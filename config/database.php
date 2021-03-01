@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Str;
 
+$url = "http://us-cdbr-east-03.cleardb.com/" ?? null;
+$host = "us-cdbr-east-03.cleardb.com" ?? null;
+$username = "b43e20f65b1cf8" ?? null;
+$password = "47b9aab86d1b294" ?? null;
+$database = "heroku_e534a73d52d6d57" ?? null;
 return [
 
     /*
@@ -62,7 +67,25 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
+        'mysql_dbclear' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => $host,
+            'port' => env('DB_PORT', '3306'),
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
